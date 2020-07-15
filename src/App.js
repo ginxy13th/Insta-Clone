@@ -8,7 +8,7 @@ Look at each file to see what props need to be passed.
 import React, { useState } from "react";
 // Import the Posts (plural!) and SearchBar components, since they are used inside App component
 import Posts from './components/Posts/Posts.js';
-import SearchBar from './components/SeachBar/SearchBar.js';
+import SearchBar from './components/SearchBar/SearchBar.js';
 // Import the dummyData
 import dummyData from './dummy-data'
 import "./App.css";
@@ -16,7 +16,7 @@ import "./App.css";
 const App = () => {
   // Create a state called 'posts' to hold the list of posts, initializing to dummyData.
   // To make the search bar work (which is stretch) we'd need another state to hold the search term.
-const [Posts, setPosts] = useState(dummyData)
+const [posts, setPosts] = useState(dummyData)
 
   const likePost = postId => {
     // This function is passed into nested components using props, to allow them to update application state.
@@ -25,18 +25,18 @@ const [Posts, setPosts] = useState(dummyData)
     // The callback passed into `posts.map()` performs the following logic:
     //  - if the `id` of the post matches `postId`, return a new post object containing an increased 'likes' count.
     //  - otherwise just return the post object unchanged.
-    setPosts(Posts.map(post => {
-      if (postId.id === postId) {
-        return (...Post, likes: Post.likes + 1)
+    setPosts(posts.map(post => {
+      if (post.id === postId) {
+        return ({...post, likes: post.likes + 1})
       }
-      return Post;
+      return post;
     }))
   };
 
   return (
     <div className="App">
-      {<SearchBar />}
-      {<Comments />}
+      <SearchBar />
+      <Posts likePost={likePost} posts={posts} />
     </div>
   );
 };

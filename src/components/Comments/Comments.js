@@ -8,7 +8,7 @@ const Comments = props => {
 
   return (
     <div>
-      {comments.map(comment => <Comment key = {comment.id}/>
+      {comments.map(comment => <Comment key = {comment.id} comment={comment}/>
       )}
     </div>
   );
